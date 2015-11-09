@@ -1,0 +1,38 @@
+
+<head>
+    <title>hello</title>
+</head>
+
+<body>
+<h1>Welcome to Tweetter Score!</h1>
+
+{{> twitterform}}
+</body>
+
+<template name="twitterform">
+    <div class="container">
+        <h2>  {{result.next_player.name}} scored {{result.next_player.average}}</h2>
+        <h1>{{result.position}}. {{result.name}} scored {{result.average}}</h1>
+        <h2> {{result.previous_player.name}} scored {{result.previous_player.average}}</h2>
+
+            <form class="twitter_name">
+                <input type="text" name="text" placeholder="Twitter username" />
+            </form>
+        {{>scoreBoard}}
+    </div>
+
+ </template>
+
+<template name="scoreBoard">
+    <h1>Scoreboard</h1>
+    <ul>
+        {{#each scores}}
+            <li> {{@index}} .{{> scoreItem}}</li>
+        {{/each}}
+    </ul>
+</template>
+
+
+<template name="scoreItem">
+    {{screen_name}} - {{average}}
+</template>

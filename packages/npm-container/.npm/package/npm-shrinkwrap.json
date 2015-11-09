@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "flesch-kincaid": {
+      "version": "0.1.0"
+    },
+    "syllable": {
+      "version": "0.1.4",
+      "dependencies": {
+        "pluralize": {
+          "version": "1.2.1"
+        }
+      }
+    }
+  }
+}
