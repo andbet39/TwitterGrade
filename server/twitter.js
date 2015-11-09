@@ -28,109 +28,123 @@ Meteor.methods({
         console.log('Method call  :' + term);
 
 
-        var tweetcall = Async.runSync(function(done) {
+        var tweetcall = Async.runSync(function (done) {
 
             Twit.get('statuses/user_timeline', {screen_name: term, count: 50},
                 function (err, data) {
                     var total = 0;
                     var min = 10000;
                     var max = -10000;
-                    var max_text="";
-                    var min_text="";
+                    var max_text = "";
+                    var min_text = "";
                     var profile_pic_url = "";
                     var id;
-                    var name="";
-                    var screen_name="";
+                    var name = "";
+                    var screen_name = "";
+                    if (data) {
+                        data.forEach(function (tweet) {
 
-                    data.forEach(function (tweet) {
+                            if (!tweet.retweeted) {
+                                var grade = Flasch({
+                                    'sentence': countSentences(tweet.text),
+                                    'word': countWords(tweet.text),
+                                    'syllable': Syllable(tweet.text)
+                                });
 
-                        if(!tweet.retweeted) {
-                            var grade = Flasch({
-                                'sentence': countSentences(tweet.text),
-                                'word': countWords(tweet.text),
-                                'syllable': Syllable(tweet.text)
-                            });
+                                if (grade > max) {
+                                    max = grade;
+                                    max_text = tweet.text;
+                                }
+                                if (grade < min) {
+                                    min = grade;
+                                    min_text = tweet.text;
 
-                            if (grade > max) {
-                                max = grade;
-                                max_text = tweet.text;
+                                }
+                                total += grade;
+                                profile_pic_url = tweet.user.profile_image_url;
+                                id = tweet.user.id.toString();
+                                name = tweet.user.name;
+                                screen_name = tweet.user.screen_name;
                             }
-                            if (grade < min) {
-                                min = grade;
-                                min_text = tweet.text;
+                        });
 
-                            }
-                            total += grade;
-                            profile_pic_url=tweet.user. profile_image_url;
-                            id=tweet.user.id.toString();
-                            name=tweet.user.name;
-                            screen_name=tweet.user.screen_name;
-                        }
-                    });
-
-                    var newscore = {
-                        _id:id,
-                        profile_pic_url:profile_pic_url,
-                        name:name,
-                        screen_name: screen_name,
-                        average: total / 50,
-                        max: max,
-                        min: min,
-                        min_text:min_text,
-                        max_text:max_text,
-                        createdAt: new Date()
-                    };
+                        var newscore = {
+                            _id: id,
+                            profile_pic_url: profile_pic_url,
+                            name: name,
+                            screen_name: screen_name,
+                            average: total / 50,
+                            max: max,
+                            min: min,
+                            min_text: min_text,
+                            max_text: max_text,
+                            createdAt: new Date()
+                        };
 
 
-                    done(null,newscore);
+                        done(null, newscore);
+
+                    } else {
+                        done('not found', null);
+                    }
 
                 });
 
         });
 
+        if (tweetcall.error)
+            throw new Meteor.Error(500, 'Error 500: Not found', 'the user is not found');
+
 
         var oldscore = TweetQuery.findOne(tweetcall.result._id);
         console.log(tweetcall.result._id);
-        if(oldscore){
+        if (oldscore) {
             TweetQuery.update(tweetcall.result._id, {
                 $set: {
                     average: tweetcall.result.average,
                     max: tweetcall.result.max,
                     min: tweetcall.result.min,
                     max_text: tweetcall.result.max_text,
-                    min_text:tweetcall.result.min_text,
-                    screen_name:tweetcall.result.screen_name,
-                    profile_pic_url:tweetcall.result.profile_pic_url
+                    min_text: tweetcall.result.min_text,
+                    screen_name: tweetcall.result.screen_name,
+                    profile_pic_url: tweetcall.result.profile_pic_url
                 }
             });
-        }else {
+        } else {
             TweetQuery.insert(tweetcall.result);
         }
 
-        tweetcall.result.position = TweetQuery.find({average:{$gt:tweetcall.result.average}}).count()+1;
+        tweetcall.result.position = TweetQuery.find({average: {$gt: tweetcall.result.average}}).count() + 1;
 
         tweetcall.result.next_player = TweetQuery.findOne(
-                {   _id: {$ne:tweetcall.result._id},
-                    average: {$gte: tweetcall.result.average}
-                },{sort:{average:1}
+            {
+                _id: {$ne: tweetcall.result._id},
+                average: {$gte: tweetcall.result.average}
+            }, {
+                sort: {average: 1}
             });
 
 
         tweetcall.result.previous_player = TweetQuery.findOne(
-            {_id: {$ne:tweetcall.result._id},
-                average: {$lte: tweetcall.result.average}},
-            {sort:{average:-1}}
+            {
+                _id: {$ne: tweetcall.result._id},
+                average: {$lte: tweetcall.result.average}
+            },
+            {sort: {average: -1}}
         );
 
 
-        if(tweetcall.result.next_player)
-        tweetcall.result.next_player.position=tweetcall.result.position-1;
-        if(tweetcall.result.previous_player)
-        tweetcall.result.previous_player.position=tweetcall.result.position+1;
+        if (tweetcall.result.next_player)
+            tweetcall.result.next_player.position = tweetcall.result.position - 1;
+        if (tweetcall.result.previous_player)
+            tweetcall.result.previous_player.position = tweetcall.result.position + 1;
 
 
         return tweetcall.result;
 
-
     }
+});
+
+Meteor.publish('twitquery', function () {
+    return TweetQuery.find({});
 });

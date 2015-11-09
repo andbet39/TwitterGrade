@@ -13,7 +13,7 @@ Template.twitterform.events({
                 console.log(error);
             }
             console.log(result);
-            Session.set('result', result);
+                 Session.set('result', result);
         });
 
         event.target.text.value = "";
