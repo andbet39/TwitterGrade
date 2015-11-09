@@ -40,6 +40,7 @@ Meteor.methods({
                     var profile_pic_url = "";
                     var id;
                     var name="";
+                    var screen_name="";
 
                     data.forEach(function (tweet) {
 
@@ -63,6 +64,7 @@ Meteor.methods({
                             profile_pic_url=tweet.user. profile_image_url;
                             id=tweet.user.id.toString();
                             name=tweet.user.name;
+                            screen_name=tweet.user.screen_name;
                         }
                     });
 
@@ -70,7 +72,7 @@ Meteor.methods({
                         _id:id,
                         profile_pic_url:profile_pic_url,
                         name:name,
-                        screen_name: term,
+                        screen_name: screen_name,
                         average: total / 50,
                         max: max,
                         min: min,
@@ -88,7 +90,7 @@ Meteor.methods({
 
 
         var oldscore = TweetQuery.findOne(tweetcall.result._id);
-
+        console.log(tweetcall.result._id);
         if(oldscore){
             TweetQuery.update(tweetcall.result._id, {
                 $set: {
