@@ -107,7 +107,7 @@ Meteor.methods({
             TweetQuery.insert(tweetcall.result);
         }
 
-        tweetcall.result.position = TweetQuery.find({average:{$gt:tweetcall.result.average}}).count();
+        tweetcall.result.position = TweetQuery.find({average:{$gt:tweetcall.result.average}}).count()+1;
 
         tweetcall.result.next_player = TweetQuery.findOne(
                 {   _id: {$ne:tweetcall.result._id},
@@ -115,11 +115,19 @@ Meteor.methods({
                 },{sort:{average:1}
             });
 
+
         tweetcall.result.previous_player = TweetQuery.findOne(
             {_id: {$ne:tweetcall.result._id},
                 average: {$lte: tweetcall.result.average}},
             {sort:{average:-1}}
         );
+
+
+        if(tweetcall.result.next_player)
+        tweetcall.result.next_player.position=tweetcall.result.position-1;
+        if(tweetcall.result.previous_player)
+        tweetcall.result.previous_player.position=tweetcall.result.position+1;
+
 
         return tweetcall.result;
 

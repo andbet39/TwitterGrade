@@ -33,19 +33,17 @@ Template.twitterform.helpers({
     }
 });
 
-
 Template.resultshow.helpers({
     result: function () {
         return Session.get('result');
-    },
-    re_average: function () {
-        return Number((average).toFixed(4));
-    },
-    re_previous_average:function () {
-        return Number((this.result.previous_player.average).toFixed(4));
-    },
-    re_next_average:function () {
-        return Number((this.result.next_player.average).toFixed(4));
+    }
+});
+
+
+Template.lead_item.helpers({
+
+    average: function () {
+        return Number((this.average).toFixed(4));
     }
 });
 
@@ -54,6 +52,26 @@ Template.resultshow.helpers({
 
 Template.scoreItem.helpers({
     average: function () {
-        return Number((this.average).toFixed(4));
+        return Number((this.item.average).toFixed(4));
+    },
+    myindex:function(){
+        return this.index+1
     }
 });
+
+
+if(Meteor.isClient) {
+    Template.socialShareBasic.helpers({
+        opts: function() {
+            var opts ={
+                facebook: true,
+                twitter: true,
+                pinterest: false,
+                shareData: {
+                    url: 'http://twitgrade.codetutorial.io'
+                }
+            };
+            return opts;
+        }
+    });
+}

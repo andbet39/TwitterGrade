@@ -5,6 +5,22 @@ body{
     background-color: #f9f9f9;
     color: #ef1916;
 }
+
+.logo{
+    width: 150px;
+}
+h2{
+    text-align: center;
+    color: black;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+h1{
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 0px;
+    color: black;
+}
 .lead_container
 {
     display: flex;
@@ -15,7 +31,7 @@ body{
 
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     width: 50%;
 }
 .profile_container{
@@ -28,23 +44,29 @@ body{
 }
 
 .next{
-    transform: scale(0.8);
+    transform: scale(0.9);
 }
 .pre{
-    transform: scale(0.8);
+    transform: scale(0.9);
 }
 
 .name{
-    font-size: 1.8em;
+    font-size: 1.5em;
     font-weight: 700;;
 }
 .result_container
 {
     margin-left: auto;
 }
+.position{
+    font-size: 1.5em;
+    margin-right: 10px;
+    font-weight: 700;;
+    color: black;
+}
 
 .avg{
-    font-size: 1.8em;
+    font-size: 1.5em;
 }
 
 .screen_name{
@@ -82,4 +104,32 @@ input[type="text"] {
 input.input2[type="submit"] {
     right: -5em;
     transition: 0.5s;
+}
+
+
+.shareBtn{
+    align-self: center;
+    text-align: center;
+    flex-direction: row;
+}
+
+.lm-social-share-facebook:before{
+    content: "\f09a";
+    font-family: FontAwesome;
+    padding-right: 10px;
+    padding-left: 20px;
+
+
+}
+.lm-social-share-twitter:before{
+    content: "\f099";
+    font-family: FontAwesome;
+    padding-right: 10px;
+    padding-left: 20px;
+}
+.lm-social-share-twitter{
+    display: inline-flex;
+}
+.lm-social-share-facebook{
+    display: inline-flex;
 }
