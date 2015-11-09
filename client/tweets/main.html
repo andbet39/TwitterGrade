@@ -11,9 +11,11 @@
 
 <template name="twitterform">
     <div class="container">
+{{#if result}}
         <h2>  {{result.next_player.name}} scored {{result.next_player.average}}</h2>
         <h1>{{result.position}}. {{result.name}} scored {{result.average}}</h1>
         <h2> {{result.previous_player.name}} scored {{result.previous_player.average}}</h2>
+{{/if}}
 
             <form class="twitter_name">
                 <input type="text" name="text" placeholder="Twitter username" />
