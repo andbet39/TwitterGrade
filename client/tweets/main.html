@@ -1,6 +1,7 @@
 
 <head>
     <title>hello</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -11,30 +12,100 @@
 
 <template name="twitterform">
     <div class="container">
-{{#if result}}
-        <h2>  {{result.next_player.name}} scored {{result.next_player.average}}</h2>
-        <h1>{{result.position}}. {{result.name}} scored {{result.average}}</h1>
-        <h2> {{result.previous_player.name}} scored {{result.previous_player.average}}</h2>
-{{/if}}
 
-            <form class="twitter_name">
-                <input type="text" name="text" placeholder="Twitter username" />
-            </form>
+
+        <form class="twitter_name">
+            <input class="input2" type="text" placeholder="Twitter name" name="text"/>
+        </form>
+
+        {{#if result}}
+            {{> resultshow}}
+        {{/if}}
+
+
         {{>scoreBoard}}
     </div>
 
- </template>
+</template>
+
+<template name="resultshow">
+    <div class="row">
+        <div class="lead_container">
+            <div class="lead_item next">
+                <div class="position">
+
+                </div>
+                <div class="picture">
+                    <img  src="{{result.next_player.profile_pic_url}}" alt="{{result.next_player.name}}" class="profile_pic img-circle" />
+                </div>
+                <div class="profile_container">
+                    <span class="name">{{result.next_player.name}}</span><br/>
+                    <span class="screen_name">@{{result.next_player.screen_name}}</span><br/>
+                </div>
+                <div class="result_container">
+                    <span class="avg">{{result.next_player.average}} <small>pt</small></span>
+
+                </div>
+            </div>
+            <div class="lead_item">
+                <div class="position">
+                    {{result.position}}
+                </div>
+                <div class="picture">
+                    <img  src="{{result.profile_pic_url}}" alt="{{result.name}}" class="profile_pic img-circle" />
+                </div>
+                <div class="profile_container">
+                    <span class="name">{{result.name}}</span><br/>
+                    <span class="screen_name">@{{result.screen_name}}</span><br/>
+                </div>
+                <div class="result_container">
+                    <span class="avg">{{result.average}} <small>pt</small></span>
+
+                </div>
+            </div>
+            <div class="lead_item pre">
+                <div class="position">
+                </div>
+                <div class="picture">
+                    <img  src="{{result.previous_player.profile_pic_url}}" alt="{{result.previous_player.name}}" class="profile_pic img-circle" />
+                </div>
+                <div class="profile_container">
+                    <span class="name">{{result.previous_player.name}}</span><br/>
+                    <span class="screen_name">@{{result.previous_player.screen_name}}</span><br/>
+                </div>
+                <div class="result_container">
+                    <span class="avg">{{result.next_player.average}} <small>pt</small></span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
 
 <template name="scoreBoard">
-    <h1>Scoreboard</h1>
-    <ul>
-        {{#each scores}}
-            <li> {{@index}} .{{> scoreItem}}</li>
-        {{/each}}
-    </ul>
+    <div class="row">
+        <div class="lead_container">
+            {{#each scores}}
+                {{> scoreItem}}
+            {{/each}}
+        </div>
+    </div>
+
 </template>
 
 
 <template name="scoreItem">
-    {{screen_name}} - {{average}}
+    <div class="lead_item">
+        <div class="picture">
+            <img  src="{{profile_pic_url}}" alt="{{name}}" class="profile_pic img-circle" />
+        </div>
+        <div class="profile_container">
+            <span class="name">{{name}}</span><br/>
+            <span class="screen_name">@{{screen_name}}</span><br/>
+        </div>
+        <div class="result_container">
+            <span class="avg">{{average}} <small>pt</small></span>
+
+        </div>
+    </div>
 </template>

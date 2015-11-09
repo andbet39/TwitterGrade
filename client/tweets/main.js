@@ -29,6 +29,31 @@ Template.scoreBoard.helpers({
 
 Template.twitterform.helpers({
     result: function () {
-        return Session.get('result'); // "bar"
+        return Session.get('result');
+    }
+});
+
+
+Template.resultshow.helpers({
+    result: function () {
+        return Session.get('result');
+    },
+    re_average: function () {
+        return Number((average).toFixed(4));
+    },
+    re_previous_average:function () {
+        return Number((this.result.previous_player.average).toFixed(4));
+    },
+    re_next_average:function () {
+        return Number((this.result.next_player.average).toFixed(4));
+    }
+});
+
+
+
+
+Template.scoreItem.helpers({
+    average: function () {
+        return Number((this.average).toFixed(4));
     }
 });

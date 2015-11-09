@@ -1,1 +1,85 @@
 /* CSS declarations go here */
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f9f9f9;
+    color: #ef1916;
+}
+.lead_container
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.lead_item{
+
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 50%;
+}
+.profile_container{
+    padding-left: 25px;
+}
+.profile_pic{
+    border: 1px solid;
+    border-color: #e5e5e5;
+
+}
+
+.next{
+    transform: scale(0.8);
+}
+.pre{
+    transform: scale(0.8);
+}
+
+.name{
+    font-size: 1.8em;
+    font-weight: 700;;
+}
+.result_container
+{
+    margin-left: auto;
+}
+
+.avg{
+    font-size: 1.8em;
+}
+
+.screen_name{
+    color: black;
+}
+
+
+
+form {
+    border-radius: 1.5em;
+    position: relative;
+    height: 3em;
+    margin: 2em auto;
+    max-width: 30em;
+    overflow: hidden;
+    width: 95%;
+    font-size: 18px;
+    color: black;
+}
+
+input {
+    border: none;
+    height: 100%;
+}
+input:focus {
+    outline: none;
+}
+
+input[type="text"] {
+    padding: 0 6em 0 1em;
+    width: 100%;
+}
+
+
+input.input2[type="submit"] {
+    right: -5em;
+    transition: 0.5s;
+}
