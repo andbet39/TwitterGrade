@@ -68,7 +68,7 @@ if(Meteor.isClient) {
                 twitter: true,
                 pinterest: false,
                 shareData: {
-                    url: 'http://twitgrade.codetutorial.io'
+                    url: 'http://twittergrade.codetutorial.io'
                 }
             };
             return opts;
