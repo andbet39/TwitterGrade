@@ -121,6 +121,9 @@ input.input2[type="submit"] {
 
 
 }
+a:hover{
+    text-decoration: none;
+}
 .lm-social-share-twitter:before{
     content: "\f099";
     font-family: FontAwesome;

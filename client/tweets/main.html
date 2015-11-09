@@ -5,7 +5,7 @@
     </head>
 
     <body>
-    <h1>Twitter grade by <img  src="https://www.codetutorial.io/wordpress/wp-content/uploads/2015/07/logoCodenew.png" class="logo" />
+    <h1>Twitter grade by <a href="https://www.codetutorial.io"> <img  src="https://www.codetutorial.io/wordpress/wp-content/uploads/2015/07/logoCodenew.png" class="logo" /></a>
     </h1>
     {{> socialShareBasic}}
     {{> twitterform}}
@@ -69,7 +69,7 @@
         </div>
         <div class="profile_container">
             <span class="name">{{name}}</span><br/>
-            <span class="screen_name">@{{screen_name}}</span><br/>
+            <span class="screen_name"><a href="https://twitter.com/{{screen_name}}">@{{screen_name}}</a></span><br/>
         </div>
         <div class="result_container">
             <span class="avg">{{average}} <small>pt</small></span>
@@ -104,7 +104,7 @@
         </div>
         <div class="profile_container">
             <span class="name">{{item.name}}</span><br/>
-            <span class="screen_name">@{{item.screen_name}}</span><br/>
+            <span class="screen_name"><a href="https://twitter.com/{{item.screen_name}}">@{{item.screen_name}}</a></span><br/>
         </div>
         <div class="result_container">
             <span class="avg">{{average}} <small>pt</small></span>
