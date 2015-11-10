@@ -12,27 +12,26 @@
     </body>
 </template>
 <template name="socialShareBasic">
-    <div class="row">
-        <div class="shareBtn">
+         <div class="shareBtn">
            Click here to share on {{> lmSocialShare opts=opts}}
         </div>
-    </div>
 
 </template>
 
 <template name="twitterform">
-    <div class="container">
+         <div class="my_container">
 
 
         <form class="twitter_name">
             <input class="input2" type="text" placeholder="Twitter account name without @" name="text"/>
+            <button type="submit" class="btn btn-search">Search!</button>
         </form>
 
         {{#if result}}
             {{> resultshow}}
         {{/if}}
 
-        <h2>Leaderboard</h2>
+     <!--   <h2>Leaderboard</h2>-->
         <hr>
 
         {{>scoreBoard}}
@@ -41,8 +40,7 @@
 </template>
 
 <template name="resultshow">
-    <div class="row">
-        <div class="lead_container">
+         <div class="lead_container">
                  {{#with result.next_player}}
                     {{> lead_item }}
                 {{/with}}
@@ -54,7 +52,6 @@
                         {{> lead_item }}
                     {{/with}}
          </div>
-    </div>
 
 </template>
 
@@ -83,13 +80,11 @@
 
 
 <template name="scoreBoard">
-    <div class="row">
         <div class="lead_container">
             {{#each scores}}
                 {{> scoreItem item=this index=@index }}
             {{/each}}
         </div>
-    </div>
 
 </template>
 
@@ -110,5 +105,7 @@
             <span class="avg">{{average}} <small>pt</small></span>
 
         </div>
+
     </div>
+
 </template>

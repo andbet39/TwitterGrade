@@ -12,9 +12,12 @@ Template.twitterform.events({
             if(error){
                 console.log(error);
             }
-            console.log(result);
-                 Session.set('result', result);
+
+         Session.set('result', result);
         });
+
+        ga("query", "submitted");
+
 
         event.target.text.value = "";
     }
@@ -43,7 +46,7 @@ Template.resultshow.helpers({
 Template.lead_item.helpers({
 
     average: function () {
-        return Number((this.average).toFixed(4));
+        return Number((this.average).toFixed(2));
     }
 });
 
@@ -52,7 +55,7 @@ Template.lead_item.helpers({
 
 Template.scoreItem.helpers({
     average: function () {
-        return Number((this.item.average).toFixed(4));
+        return Number((this.item.average).toFixed(2));
     },
     myindex:function(){
         return this.index+1

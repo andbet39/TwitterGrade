@@ -10,8 +10,10 @@ Meteor.startup(function() {
             },
             og: {
                 'image': 'https://www.codetutorial.io/wordpress/wp-content/uploads/2015/07/logoCodenew.png',
-                'title':"Twitter grade by CODETutorial.io",
-                'site_name':'Twitter Grade'
+                'title':'Twitter grade by CODETutorial.io',
+                'site_name':'Twitter Grade',
+                'type':'website',
+                'url':'http://twittergrade.codetutorial.io'
             }
         });
     }
