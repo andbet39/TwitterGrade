@@ -31,7 +31,7 @@
   "appName": "twittergrade",
 
   // Location of app (local directory)
-  "app": "C:\\Users\\andrea.terzani\\WebstormProjects\\TweetRate",
+  "app": "/Users/andreaterzani/Desktop/Dev/TwitterGrade",
 
   // Configure environment
   "env": {

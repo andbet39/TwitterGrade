@@ -119,9 +119,13 @@ input.input2[type="submit"] {
 
 
 .shareBtn{
+    margin-top: 15px;
     align-self: center;
+    font-size: 18px;
     text-align: center;
     flex-direction: row;
+    margin-bottom: -10px;
+
 }
 
 .lm-social-share-facebook:before{

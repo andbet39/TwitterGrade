@@ -8,7 +8,10 @@ Template.twitterform.events({
         event.preventDefault();
         var text = event.target.text.value;
 
-     Meteor.call('getTweets',text, function(error, result){
+        var clearedtext= text.replace('@','');
+        console.log(clearedtext);
+
+     Meteor.call('getTweets',clearedtext, function(error, result){
             if(error){
                 console.log(error);
             }
@@ -69,9 +72,9 @@ if(Meteor.isClient) {
             var opts ={
                 facebook: true,
                 twitter: true,
-                pinterest: false,
                 shareData: {
-                    url: 'http://twittergrade.codetutorial.io'
+                    url: 'http://twittergrade.codetutorial.io',
+                    caption:"test"
                 }
             };
             return opts;

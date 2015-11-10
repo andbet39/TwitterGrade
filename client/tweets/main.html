@@ -11,19 +11,19 @@
     {{> twitterform}}
     </body>
 </template>
+
+
 <template name="socialShareBasic">
-         <div class="shareBtn">
-           Click here to share on {{> lmSocialShare opts=opts}}
-        </div>
+    <div class="shareBtn">
+        {{> lmSocialShare opts=opts}}
+    </div>
 
 </template>
 
 <template name="twitterform">
-         <div class="my_container">
-
-
+    <div class="my_container">
         <form class="twitter_name">
-            <input class="input2" type="text" placeholder="Twitter account name without @" name="text"/>
+            <input class="input2" type="text" placeholder="Twitter account" name="text"/>
             <button type="submit" class="btn btn-search">Search!</button>
         </form>
 
@@ -31,27 +31,24 @@
             {{> resultshow}}
         {{/if}}
 
-     <!--   <h2>Leaderboard</h2>-->
         <hr>
-
         {{>scoreBoard}}
     </div>
-
 </template>
 
 <template name="resultshow">
-         <div class="lead_container">
-                 {{#with result.next_player}}
-                    {{> lead_item }}
-                {{/with}}
+    <div class="lead_container">
+        {{#with result.next_player}}
+            {{> lead_item }}
+        {{/with}}
 
-            {{#with result}}
-                {{> lead_item }}
-            {{/with}}
-                     {{#with result.previous_player}}
-                        {{> lead_item }}
-                    {{/with}}
-         </div>
+        {{#with result}}
+            {{> lead_item }}
+        {{/with}}
+        {{#with result.previous_player}}
+            {{> lead_item }}
+        {{/with}}
+    </div>
 
 </template>
 
@@ -80,11 +77,11 @@
 
 
 <template name="scoreBoard">
-        <div class="lead_container">
-            {{#each scores}}
-                {{> scoreItem item=this index=@index }}
-            {{/each}}
-        </div>
+    <div class="lead_container">
+        {{#each scores}}
+            {{> scoreItem item=this index=@index }}
+        {{/each}}
+    </div>
 
 </template>
 
