@@ -8,8 +8,6 @@ Router.configure({
 });
 
 Router.map(function() {
-
-
     this.route('/', {
         path: '/',
         trackPageView: true,

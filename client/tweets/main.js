@@ -11,16 +11,13 @@ Template.twitterform.events({
         var clearedtext= text.replace('@','');
         console.log(clearedtext);
 
-     Meteor.call('getTweets',clearedtext, function(error, result){
+        Meteor.call('getTweets',clearedtext, function(error, result){
             if(error){
                 console.log(error);
             }
 
-         Session.set('result', result);
+            Session.set('result', result);
         });
-
-        ga("query", "submitted");
-
 
         event.target.text.value = "";
     }
@@ -47,14 +44,10 @@ Template.resultshow.helpers({
 
 
 Template.lead_item.helpers({
-
     average: function () {
         return Number((this.average).toFixed(2));
     }
 });
-
-
-
 
 Template.scoreItem.helpers({
     average: function () {
@@ -65,9 +58,7 @@ Template.scoreItem.helpers({
     }
 });
 
-
-if(Meteor.isClient) {
-    Template.socialShareBasic.helpers({
+Template.socialShareBasic.helpers({
         opts: function() {
             var opts ={
                 facebook: true,
@@ -80,4 +71,4 @@ if(Meteor.isClient) {
             return opts;
         }
     });
-}
+

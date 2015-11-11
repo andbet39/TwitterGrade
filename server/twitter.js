@@ -1,8 +1,3 @@
-/**
- * Created by andrea.terzani on 09/11/2015.
- */
-
-
 Twit = new TwitMaker({
     consumer_key: 'HHdWfAqUEJbaoG5Z1I17VI8NO'
     , consumer_secret: 'FhmSfkN67MYasBREO1Amsh1XpD3BPH1q7bWtZboZ2wo8iV5FRO'
@@ -27,7 +22,6 @@ Meteor.methods({
     getTweets: function (term) {
         console.log('Method call  :' + term);
 
-
         var tweetcall = Async.runSync(function (done) {
 
             Twit.get('statuses/user_timeline', {screen_name: term, count: 50},
@@ -41,6 +35,7 @@ Meteor.methods({
                     var id;
                     var name = "";
                     var screen_name = "";
+
                     if (data) {
                         data.forEach(function (tweet) {
 
@@ -98,6 +93,7 @@ Meteor.methods({
 
         var oldscore = TweetQuery.findOne(tweetcall.result._id);
         console.log(tweetcall.result._id);
+
         if (oldscore) {
             TweetQuery.update(tweetcall.result._id, {
                 $set: {

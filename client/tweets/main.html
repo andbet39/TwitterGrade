@@ -3,7 +3,6 @@
         <title>Twitter grade!</title>
         <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     </head>
-
     <body>
     <h1>Twitter grade by <a href="https://www.codetutorial.io"> <img  src="https://www.codetutorial.io/wordpress/wp-content/uploads/2015/07/logoCodenew.png" class="logo" /></a>
     </h1>
@@ -49,7 +48,6 @@
             {{> lead_item }}
         {{/with}}
     </div>
-
 </template>
 
 
@@ -72,17 +70,12 @@
     </div>
 </template>
 
-
-
-
-
 <template name="scoreBoard">
     <div class="lead_container">
         {{#each scores}}
             {{> scoreItem item=this index=@index }}
         {{/each}}
     </div>
-
 </template>
 
 
